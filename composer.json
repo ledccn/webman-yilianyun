@@ -1,0 +1,33 @@
+{
+  "name": "ledc/yilianyun",
+  "type": "library",
+  "license": "MIT",
+  "description": "Webman plugin ledc/yilianyun 易联云打印开放平台SDK，webman基础插件",
+  "authors": [
+    {
+      "name": "david",
+      "email": "367013672@qq.com"
+    }
+  ],
+  "support": {
+    "email": "367013672@qq.com",
+    "issues": "https://github.com/ledccn/webman-yilianyun/issues",
+    "forum": "https://www.iyuu.cn",
+    "wiki": "https://www.iyuu.cn",
+    "source": "https://github.com/ledccn/webman-yilianyun"
+  },
+  "require": {
+    "php": ">=8.3",
+    "workerman/webman-framework": "^1.6",
+    "monolog/monolog": ">=3.5",
+    "psr/simple-cache": ">=3.0",
+    "symfony/cache": ">=7.1",
+    "ext-json": "*",
+    "ext-curl": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Ledc\\YiLianYun\\": "src"
+    }
+  }
+}
