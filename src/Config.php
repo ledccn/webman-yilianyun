@@ -3,13 +3,14 @@
 namespace Ledc\YiLianYun;
 
 use InvalidArgumentException;
+use JsonSerializable;
 use Throwable;
 
 /**
  * 易联云配置管理类
  * @author david <367013672@qq.com>
  */
-class Config
+class Config implements JsonSerializable
 {
     /**
      * 接口地址
@@ -204,5 +205,38 @@ class Config
             return config($prefix . '.app');
         }
         return config($prefix . '.' . ltrim($key, '.'));
+    }
+
+    /**
+     * 实现json序列化
+     * @return array
+     */
+    public function jsonSerialize(): array
+    {
+        return get_object_vars($this);
+    }
+
+    /**
+     * 转JSON
+     * @param int $options
+     * @return string
+     */
+    public function toJson(int $options = 0): string
+    {
+        $json = json_encode($this->jsonSerialize(), $options);
+        if (JSON_ERROR_NONE !== json_last_error()) {
+            throw new InvalidArgumentException('json_encode error: ' . json_last_error_msg());
+        }
+
+        return $json;
+    }
+
+    /**
+     * 转为字符串
+     * @return string
+     */
+    public function __toString(): string
+    {
+        return $this->toJson(JSON_UNESCAPED_UNICODE);
     }
 }

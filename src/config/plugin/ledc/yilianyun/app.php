@@ -7,6 +7,7 @@ $defaultMachineCode = getenv('YLY_MACHINE_CODE') ?: '';
 
 return [
     'enable' => true,
+    'version' => 'v8.3',
     // 易联云配置
     'config' => [
         // 应用ID

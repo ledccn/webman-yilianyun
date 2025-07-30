@@ -2,6 +2,7 @@
 
 namespace Ledc\YiLianYun;
 
+use InvalidArgumentException;
 use JsonSerializable;
 
 /**
@@ -118,7 +119,12 @@ class HttpResponse implements JsonSerializable
      */
     public function toJson(int $options = 0): string
     {
-        return json_encode($this->jsonSerialize(), $options);
+        $json = json_encode($this->jsonSerialize(), $options);
+        if (JSON_ERROR_NONE !== json_last_error()) {
+            throw new InvalidArgumentException('json_encode error: ' . json_last_error_msg());
+        }
+
+        return $json;
     }
 
     /**
