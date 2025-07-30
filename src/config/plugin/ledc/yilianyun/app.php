@@ -1,6 +1,7 @@
 <?php
 /**
- * 易联云配置
+ * 这个文件会在更新时，强制覆盖
+ * - 易联云配置
  */
 
 $defaultMachineCode = getenv('YLY_MACHINE_CODE') ?: '';
