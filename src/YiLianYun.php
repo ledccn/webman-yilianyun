@@ -269,6 +269,11 @@ class YiLianYun
     public function scheduler(): void
     {
         try {
+            if (!$this->getConfig()->isEnabled()) {
+                $this->getLogger()->info('易联云未启用');
+                return;
+            }
+
             $accessToken = $this->getCache()->get($this->generateCacheKey());
             $expiresTime = $this->getCache()->get($this->generateCacheTimestampKey()) ?: 0;
             if (empty($accessToken) || ($expiresTime < time() + 300)) {
